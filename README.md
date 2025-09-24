@@ -3,7 +3,8 @@
 📖 Overview
 
 A modern, responsive single-page portfolio website built with HTML, CSS, and JavaScript. It showcases my projects, skills, and experience in a clean, accessible design with smooth animations and easy navigation.
-<img width="1894" height="905" alt="Screenshot 2025-09-09 073141" src="https://github.com/user-attachments/assets/b08f8ad6-2348-43b0-a669-8d58625825fb" />
+
+<img width="1261" height="883" alt="1" src="https://github.com/user-attachments/assets/f0501ce8-0d71-406c-8e65-d29c686637e4" />
 
 🚀 Features
 
