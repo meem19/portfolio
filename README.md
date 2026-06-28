@@ -3,7 +3,7 @@
 My personal portfolio website showcasing my projects, skills, and graphic design works.
 
 ## 🔗 Live Site
-👉 [meem19.github.io/portfolio/]([https://meem19.github.io](https://meem19.github.io/portfolio/))
+👉 [meem19.github.io/portfolio/]([(https://meem19.github.io/portfolio/]))
 
 ![Portfolio Preview](Portofolio.png)
 
