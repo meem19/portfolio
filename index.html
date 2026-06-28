@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manar Noori — Software Engineer & UI/UX Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --cream:    #F2EAE0;
+    --teal:     #B4D3D9;
+    --lavender: #BDA6CE;
+    --violet:   #9B8EC7;
+ 
+    --bg:       #F2EAE0;
+    --bg2:      #ede4d8;
+    --bg3:      #e8ddd0;
+    --text:     #3a3045;
+    --text-mid: #5e5272;
+    --muted:    #8c7fa0;
+    --accent:   #9B8EC7;
+    --accent2:  #B4D3D9;
+    --accent3:  #BDA6CE;
+    --border:   rgba(155,142,199,0.22);
+    --card-bg:  rgba(255,255,255,0.55);
+    --radius:   14px;
+    --font-head:'Syne', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --shadow:   0 4px 32px rgba(155,142,199,0.13);
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+ 
+  /* ── CURSOR GLOW ── */
+  #glow {
+    pointer-events: none;
+    position: fixed;
+    width: 560px; height: 560px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(180,211,217,0.22) 0%, transparent 70%);
+    transition: opacity .4s;
+    z-index: 0;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    backdrop-filter: blur(20px);
+    background: rgba(242,234,224,0.82);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800; font-size: 1.15rem;
+    color: var(--text); text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #fff !important;
+    padding: .45rem 1.1rem; border-radius: 8px;
+  }
+  .nav-cta:hover { background: #8879b8 !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+ 
+  /* ── SECTION BASE ── */
+  section { position: relative; z-index: 1; padding: 7rem 5%; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: .75rem;
+  }
+  .section-title {
+    font-family: var(--font-head); font-size: clamp(2rem,4vw,2.8rem);
+    font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+  .section-sub { color: var(--muted); max-width: 540px; font-size: 1rem; }
+ 
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 6rem;
+    background: linear-gradient(160deg, #F2EAE0 0%, #e8ddd0 60%, #ddd3e8 100%);
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(180,211,217,0.25); border: 1px solid rgba(180,211,217,0.5);
+    border-radius: 100px; padding: .35rem 1rem;
+    font-size: .78rem; font-weight: 500; color: #5a8a93;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before {
+    content: ''; width: 7px; height: 7px;
+    background: #B4D3D9; border-radius: 50%; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+ 
+  .hero-title {
+    font-family: var(--font-head); font-size: clamp(2.4rem,5vw,3.8rem);
+    font-weight: 800; line-height: 1.08; margin-bottom: 1.25rem; color: var(--text);
+  }
+  .hero-title .name { color: var(--accent); display: block; }
+  .hero-title .role {
+    color: var(--muted); font-size: .5em; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: .4rem;
+  }
+  .hero-desc { color: var(--text-mid); font-size: 1rem; margin-bottom: 2rem; max-width: 420px; }
+ 
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .75rem 1.6rem; border-radius: 10px;
+    font-size: .88rem; font-weight: 600; text-decoration: none;
+    transition: all .2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 18px rgba(155,142,199,0.35); }
+  .btn-primary:hover { background: #8879b8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(155,142,199,0.4); }
+  .btn-secondary { background: rgba(180,211,217,0.2); color: var(--text); border: 1.5px solid rgba(180,211,217,0.6); }
+  .btn-secondary:hover { background: rgba(180,211,217,0.35); border-color: var(--teal); }
+ 
+  .hero-socials { display: flex; gap: .75rem; margin-top: 2rem; }
+  .hero-socials a {
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1.5px solid var(--border); background: rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); text-decoration: none; font-size: .82rem; font-weight: 700;
+    transition: all .2s; backdrop-filter: blur(6px);
+  }
+  .hero-socials a:hover { border-color: var(--accent); color: var(--accent); background: rgba(155,142,199,0.1); }
+ 
+  /* Hero card */
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+  .hero-card {
+    background: rgba(255,255,255,0.65);
+    border: 1.5px solid rgba(155,142,199,0.18);
+    border-radius: 22px; padding: 2rem;
+    backdrop-filter: blur(16px);
+    width: 100%; max-width: 340px;
+    box-shadow: 0 20px 60px rgba(155,142,199,0.18), 0 2px 8px rgba(155,142,199,0.1);
+  }
+  .hero-card-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--lavender), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 1.5rem; font-weight: 800;
+    color: #fff; margin-bottom: 1rem;
+    box-shadow: 0 4px 16px rgba(189,166,206,0.4);
+  }
+  .hero-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .hero-card .sub { color: var(--muted); font-size: .78rem; margin-bottom: 1.25rem; }
+  .hero-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+  .stat-box {
+    background: rgba(242,234,224,0.7); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: .75rem;
+  }
+  .stat-box .num { font-family: var(--font-head); font-size: 1.35rem; font-weight: 800; color: var(--accent); }
+  .stat-box .lbl { font-size: .67rem; color: var(--muted); font-weight: 500; }
+  .hero-card-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+  .tag {
+    background: rgba(180,211,217,0.2); border: 1px solid rgba(180,211,217,0.45);
+    border-radius: 6px; padding: .22rem .6rem;
+    font-size: .68rem; font-weight: 600; color: #5a8a93;
+  }
+  .tag.lav { background: rgba(189,166,206,0.15); border-color: rgba(189,166,206,0.4); color: #7a5e8a; }
+ 
+  /* ── ABOUT ── */
+  #about { background: #ede4d8; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-mid); margin-bottom: 1rem; font-size: .97rem; }
+  .about-highlight {
+    border-left: 3px solid var(--lavender); padding-left: 1.25rem;
+    margin: 1.5rem 0; font-style: italic; color: var(--text); font-size: 1rem;
+    background: rgba(189,166,206,0.08); border-radius: 0 8px 8px 0; padding: .75rem 1.25rem;
+  }
+  .about-facts { display: flex; flex-direction: column; gap: .9rem; }
+  .fact-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: rgba(255,255,255,0.55); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 1.1rem 1.25rem;
+    backdrop-filter: blur(8px); transition: border-color .2s, box-shadow .2s;
+  }
+  .fact-row:hover { border-color: var(--lavender); box-shadow: 0 4px 18px rgba(189,166,206,0.18); }
+  .fact-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .fact-row h4 { font-family: var(--font-head); font-size: .88rem; font-weight: 700; margin-bottom: .12rem; color: var(--text); }
+  .fact-row p { color: var(--muted); font-size: .8rem; }
+  .award-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(180,211,217,0.2); border: 1.5px solid rgba(180,211,217,0.45);
+    border-radius: 100px; padding: .4rem 1rem;
+    font-size: .78rem; font-weight: 600; color: #4d8a93; margin-top: 1rem;
+  }
+ 
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.1rem; margin-top: 2.5rem; }
+  .skill-card {
+    background: rgba(255,255,255,0.6); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform .22s, border-color .22s, box-shadow .22s;
+    box-shadow: var(--shadow);
+  }
+  .skill-card:hover { transform: translateY(-4px); border-color: var(--lavender); box-shadow: 0 8px 30px rgba(189,166,206,0.2); }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: .7rem; }
+  .skill-card h3 { font-family: var(--font-head); font-size: .95rem; font-weight: 700; margin-bottom: .75rem; color: var(--text); }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .pill {
+    background: rgba(180,211,217,0.15); border: 1px solid rgba(180,211,217,0.35);
+    border-radius: 6px; padding: .22rem .6rem;
+    font-size: .7rem; font-weight: 500; color: var(--text-mid);
+    transition: all .18s;
+  }
+  .pill:hover { background: rgba(155,142,199,0.15); border-color: var(--lavender); color: var(--accent); }
+ 
+  /* ── PROJECTS ── */
+  #projects { background: #ede4d8; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px,1fr)); gap: 1.4rem; margin-top: 2.5rem; }
+  .project-card {
+    background: rgba(255,255,255,0.6); border: 1.5px solid var(--border);
+    border-radius: 18px; overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    display: flex; flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+  .project-card:hover { transform: translateY(-6px); border-color: var(--lavender); box-shadow: 0 12px 40px rgba(189,166,206,0.22); }
+  .project-banner {
+    height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.2rem;
+  }
+  .project-banner.b1 { background: linear-gradient(135deg, #d8e9ed 0%, #c2dce3 100%); }
+  .project-banner.b2 { background: linear-gradient(135deg, #e2d8ed 0%, #cfc0e0 100%); }
+  .project-banner.b3 { background: linear-gradient(135deg, #d8dded 0%, #bfc6df 100%); }
+  .project-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+  .project-body h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; margin-bottom: .45rem; color: var(--text); }
+  .project-body p { color: var(--muted); font-size: .85rem; margin-bottom: 1rem; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: 1.1rem; }
+  .ptag {
+    background: rgba(155,142,199,0.12); border: 1px solid rgba(155,142,199,0.25);
+    border-radius: 5px; padding: .18rem .52rem;
+    font-size: .67rem; font-weight: 600; color: var(--accent);
+  }
+  .project-links { display: flex; gap: .75rem; }
+  .proj-link {
+    font-size: .8rem; font-weight: 600; text-decoration: none; color: var(--muted);
+    display: flex; align-items: center; gap: .3rem; transition: color .2s;
+  }
+  .proj-link:hover { color: var(--accent); }
+ 
+  /* ── GRAPHIC DESIGN ── */
+  #graphic { background: var(--bg); }
+  .graphic-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 1.25rem; margin-top: 2.5rem;
+  }
+  .graphic-card {
+    background: rgba(255,255,255,0.6); border: 1.5px solid var(--border);
+    border-radius: 18px; overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    box-shadow: var(--shadow);
+  }
+  .graphic-card:hover { transform: translateY(-6px); border-color: var(--lavender); box-shadow: 0 12px 40px rgba(189,166,206,0.22); }
+  .graphic-img-wrap { position: relative; overflow: hidden; height: 220px; background: var(--bg2); }
+  .graphic-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .graphic-card:hover .graphic-img-wrap img { transform: scale(1.04); }
+  .graphic-overlay {
+    position: absolute; top: .75rem; left: .75rem;
+  }
+  .graphic-badge {
+    display: inline-flex; align-items: center; gap: .3rem;
+    background: rgba(255,255,255,0.88); border-radius: 100px;
+    padding: .25rem .75rem; font-size: .72rem; font-weight: 700;
+    backdrop-filter: blur(6px);
+  }
+  .graphic-badge.gold { color: #7a6010; border: 1px solid rgba(232,197,71,0.4); }
+  .graphic-info { padding: 1.1rem 1.25rem; }
+  .graphic-info h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: .3rem; color: var(--text); }
+  .graphic-info p { color: var(--muted); font-size: .82rem; margin-bottom: .75rem; }
+  .gtag {
+    background: rgba(189,166,206,0.15); border: 1px solid rgba(189,166,206,0.35);
+    border-radius: 5px; padding: .2rem .6rem;
+    font-size: .68rem; font-weight: 600; color: #7a5e8a;
+  }
+ 
+  /* ── CERTS ── */
+  #certs { background: var(--bg); }
+  .certs-list { display: flex; flex-direction: column; gap: .9rem; margin-top: 2.5rem; }
+  .cert-row {
+    display: flex; align-items: center; gap: 1.25rem;
+    background: rgba(255,255,255,0.6); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 1.1rem 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .cert-row:hover { border-color: var(--lavender); box-shadow: 0 4px 18px rgba(189,166,206,0.18); }
+  .cert-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--lavender); flex-shrink: 0; }
+  .cert-dot.teal { background: var(--teal); }
+  .cert-info { flex: 1; }
+  .cert-info h4 { font-family: var(--font-head); font-size: .88rem; font-weight: 700; color: var(--text); }
+  .cert-info p { color: var(--muted); font-size: .78rem; }
+  .cert-date { font-size: .74rem; color: var(--accent); font-weight: 600; white-space: nowrap; }
+ 
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(160deg, #e8ddd0 0%, #ddd4e8 100%);
+    text-align: center;
+  }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-inner .section-sub { margin: 0 auto 2.5rem; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; margin-bottom: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: .6rem;
+    background: rgba(255,255,255,0.6); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: .75rem 1.2rem;
+    text-decoration: none; color: var(--text-mid); font-size: .85rem; font-weight: 500;
+    backdrop-filter: blur(8px); transition: all .2s;
+  }
+  .contact-link:hover { border-color: var(--lavender); color: var(--accent); background: rgba(255,255,255,0.8); box-shadow: 0 4px 16px rgba(189,166,206,0.2); }
+  .contact-link svg { width: 17px; height: 17px; }
+ 
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2rem 5%;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: .78rem;
+    background: var(--bg2);
+  }
+  footer span { color: var(--accent); }
+ 
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(242,234,224,0.95); border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%; gap: 1.25rem; backdrop-filter: blur(16px);
+    }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { order: -1; }
+    .about-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 5%; }
+    .hero-title { font-size: clamp(2rem,8vw,3rem); }
+  }
+</style>
+</head>
+<body>
+ 
+<div id="glow"></div>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Manar<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#graphic">Design</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left reveal">
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-title">
+        <span class="role">Software Engineer &amp; UI/UX</span>
+        <span class="name">Manar Noori</span>
+      </h1>
+      <p class="hero-desc">I build web experiences that are as thoughtful in design as they are solid in code — from responsive front-ends to interactive data dashboards.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View My Work ↓</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        <a href="https://drive.google.com/file/d/1O84E0qDGfdZB695sk1T4ZL6NKJhcasmD/view?usp=drive_link" target="_blank" class="btn btn-secondary">📄 My CV</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://linkedin.com/in/manar-noori" target="_blank" aria-label="LinkedIn" title="LinkedIn">in</a>
+        <a href="mailto:manarmohsen194@gmail.com" title="Email">@</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal" style="transition-delay:.15s">
+      <div class="hero-card">
+        <div class="hero-card-avatar">MN</div>
+        <h3>Manar Noori</h3>
+        <p class="sub">IT Developer · Bahrain 🇧🇭</p>
+        <div class="hero-card-stats">
+          <div class="stat-box">
+            <div class="num">3+</div>
+            <div class="lbl">Projects Built</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">4</div>
+            <div class="lbl">Certifications</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">🏆</div>
+            <div class="lbl">Best Design Award</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">2</div>
+            <div class="lbl">Languages</div>
+          </div>
+        </div>
+        <div class="hero-card-tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag lav">Adobe Illustrator</span>
+          <span class="tag">Flutter</span>
+          <span class="tag lav">UI/UX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">Who I Am</div>
+        <h2 class="section-title">I build things I'm proud of — and design them like it shows.</h2>
+        <p>I'm Manar Noori, an IT graduate from Ahlia University in Bahrain, specialising in web development, software engineering, and UI/UX design. I care deeply about the details — clean layouts, smooth interactions, and code that's as readable as the interfaces I build.</p>
+        <blockquote class="about-highlight">I don't just build things — I enjoy every pixel of designing them. That passion is what earned me the Best Product Design Award.</blockquote>
+        <p>Beyond coding, I spent time as a Laboratory Assistant, translating complex technical concepts into approachable explanations — a skill that makes me a better communicator on any team.</p>
+        <div class="award-badge">🏆 Best Product Design Award · Oct 2024</div>
+      </div>
+      <div class="about-facts reveal" style="transition-delay:.15s">
+        <div class="fact-row">
+          <div class="fact-icon">🎓</div>
+          <div>
+            <h4>Education</h4>
+            <p>B.Sc. in Information Technology — Ahlia University, Bahrain (Feb 2025)</p>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-icon">🏢</div>
+          <div>
+            <h4>Experience</h4>
+            <p>Laboratory Assistant Intern · Ahlia University (Mar–Apr 2024)</p>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-icon">💡</div>
+          <div>
+            <h4>Skills Summary</h4>
+            <p>Front-End Dev · UI/UX · Python · SQL · Power BI · Adobe Illustrator</p>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-icon">🌍</div>
+          <div>
+            <h4>Location &amp; Languages</h4>
+            <p>Manama, Bahrain · Arabic (Native) · English (Professional)</p>
+          </div>
+        </div>
+        <div class="fact-row">
+          <div class="fact-icon">📊</div>
+          <div>
+            <h4>Microsoft Certified</h4>
+            <p>Power BI Data Analyst Associate (Feb 2025)</p>
+          </div>
+        </div>
+        <a href="https://drive.google.com/file/d/1O84E0qDGfdZB695sk1T4ZL6NKJhcasmD/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="margin-top:.5rem;justify-content:center;">📄 Download CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">What I Work With</div>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-sub">A versatile toolkit spanning front-end development, data analytics, and design tooling.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">💻</div>
+        <h3>Programming Languages</h3>
+        <div class="skill-pills">
+          <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span>
+          <span class="pill">SQL</span><span class="pill">Java</span><span class="pill">Python</span>
+          <span class="pill">Flutter</span><span class="pill">Visual Basic</span>
+        </div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.09s">
+        <div class="skill-card-icon">🎨</div>
+        <h3>Web &amp; UI/UX</h3>
+        <div class="skill-pills">
+          <span class="pill">Front-End Dev</span><span class="pill">Responsive Design</span>
+          <span class="pill">E-commerce</span><span class="pill">GUI Design</span>
+          <span class="pill">Adobe Illustrator</span>
+        </div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.18s">
+        <div class="skill-card-icon">📈</div>
+        <h3>Data &amp; Analytics</h3>
+        <div class="skill-pills">
+          <span class="pill">Power BI</span><span class="pill">Data Modeling</span>
+          <span class="pill">Interactive Dashboards</span><span class="pill">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal" style="transition-delay:.27s">
+        <div class="skill-card-icon">🛠️</div>
+        <h3>Tools &amp; Platforms</h3>
+        <div class="skill-pills">
+          <span class="pill">GitHub</span><span class="pill">GitHub Pages</span>
+          <span class="pill">Windows OS</span><span class="pill">MS Office 365</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">What I've Built</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">A selection of projects that reflect my approach: clean code, thoughtful design, real results.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-banner b1" style="background: linear-gradient(135deg, #d8e9d8 0%, #b8d4b8 100%);">📚</div>
+        <div class="project-body">
+          <h3>Let's Read — Book Recommendation</h3>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;">
+            <span style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(232,197,71,0.12);border:1px solid rgba(232,197,71,0.35);border-radius:100px;padding:.25rem .8rem;font-size:.72rem;font-weight:700;color:#7a6010;">⭐ Final University Project</span>
+            <span style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(180,211,217,0.2);border:1px solid rgba(180,211,217,0.45);border-radius:100px;padding:.25rem .8rem;font-size:.72rem;font-weight:600;color:#4d8a93;">🏆 Best Product Design Award</span>
+          </div>
+          <p>A smart book recommendation web app that suggests books based on personal reading preferences — with login, genre selection, search, and profile management.</p>
+          <div class="project-tags">
+            <span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">SQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/meem19/Book-Recommendation-Website" target="_blank" class="proj-link">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.1s">
+        <div class="project-banner b1">🌐</div>
+        <div class="project-body">
+          <h3>Personal Portfolio Website</h3>
+          <p>My previous portfolio — a modern, single-page site with custom UI animations, smooth navigation, and optimised performance deployed via GitHub Pages.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">GitHub Pages</span>
+          </div>
+          <div class="project-links">
+            <a href="https://meem19.github.io/portfolio" target="_blank" class="proj-link">↗ Live Site</a>
+            <a href="https://github.com/meem19/portfolio" target="_blank" class="proj-link">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.2s">
+        <div class="project-banner b2">📊</div>
+        <div class="project-body">
+          <h3>LucaStore — Sales Dashboard</h3>
+          <p>An interactive Power BI sales dashboard with complex data modeling — surfacing revenue trends, temporal patterns, and customer engagement insights.</p>
+          <div class="project-tags">
+            <span class="ptag">Power BI</span><span class="ptag">Data Modeling</span><span class="ptag">Data Analysis</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/meem19/LucaStore-Sales-Dashboard" target="_blank" class="proj-link">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal" style="transition-delay:.3s">
+        <div class="project-banner b3">🎬</div>
+        <div class="project-body">
+          <h3>MovieFlix — Ticketing Platform</h3>
+          <p>A full movie ticketing platform with real-time showtimes, dynamic seat booking, and a polished UI/UX that works beautifully on any screen size.</p>
+          <div class="project-tags">
+            <span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">UI/UX</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/meem19/Movie-Tickets-booking" target="_blank" class="proj-link">↗ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- GRAPHIC DESIGN -->
+<section id="graphic">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Adobe Illustrator</div>
+      <h2 class="section-title">Graphic Design Works</h2>
+      <p class="section-sub">A collection of designs created during my Adobe Illustrator Level 1 training — each one crafted with care from scratch.</p>
+    </div>
+    <div class="graphic-grid">
+      <div class="graphic-card reveal" style="transition-delay:.0s">
+        <div class="graphic-img-wrap">
+          <img src="https://github.com/meem19/Adobe-Illustrator-level-1/raw/main/chocolate.png" alt="Chocolate design" loading="lazy" />
+          <div class="graphic-overlay">
+            <span class="graphic-badge gold">⭐ Final Project</span>
+          </div>
+        </div>
+        <div class="graphic-info">
+          <h3>Chocolate</h3>
+          <p>Marketing flyer designed independently from scratch — final project of the course.</p>
+          <span class="gtag">Adobe Illustrator</span>
+        </div>
+      </div>
+      <div class="graphic-card reveal" style="transition-delay:.1s">
+        <div class="graphic-img-wrap">
+          <img src="https://github.com/meem19/Adobe-Illustrator-level-1/raw/main/exclusive%20offer%20.png" alt="Exclusive Offer design" loading="lazy" />
+        </div>
+        <div class="graphic-info">
+          <h3>Exclusive Offer</h3>
+          <p>Promotional design for Cookies House featuring a clean layout and strong visual hierarchy.</p>
+          <span class="gtag">Adobe Illustrator</span>
+        </div>
+      </div>
+      <div class="graphic-card reveal" style="transition-delay:.2s">
+        <div class="graphic-img-wrap">
+          <img src="https://github.com/meem19/Adobe-Illustrator-level-1/raw/main/Buy%20%26%20get.png" alt="Buy and Get design" loading="lazy" />
+        </div>
+        <div class="graphic-info">
+          <h3>Buy &amp; Get</h3>
+          <p>Voucher card design for Finixa paint processing products.</p>
+          <span class="gtag">Adobe Illustrator</span>
+        </div>
+      </div>
+      <div class="graphic-card reveal" style="transition-delay:.3s">
+        <div class="graphic-img-wrap">
+          <img src="https://github.com/meem19/Adobe-Illustrator-level-1/raw/main/perfum%20.png" alt="Perfume design" loading="lazy" />
+        </div>
+        <div class="graphic-info">
+          <h3>Perfume</h3>
+          <p>Elegant promotional design with a sophisticated visual style.</p>
+          <span class="gtag">Adobe Illustrator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CERTS -->
+<section id="certs">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Continuous Learning</div>
+      <h2 class="section-title">Certifications &amp; Training</h2>
+    </div>
+    <div class="certs-list">
+      <div class="cert-row reveal">
+        <div class="cert-dot"></div>
+        <div class="cert-info">
+          <h4>Employability Skills Workshop</h4>
+          <p>Jobs Plus Co. W.L.L. — Workplace competencies, professional readiness &amp; communication</p>
+        </div>
+        <div class="cert-date">Apr 2026</div>
+      </div>
+      <div class="cert-row reveal" style="transition-delay:.07s">
+        <div class="cert-dot teal"></div>
+        <div class="cert-info">
+          <h4>Adobe Illustrator (Level 1)</h4>
+          <p>Majestic Training Center — Vector graphics, logo design &amp; UI branding assets</p>
+        </div>
+        <div class="cert-date">Feb 2026</div>
+      </div>
+      <div class="cert-row reveal" style="transition-delay:.14s">
+        <div class="cert-dot"></div>
+        <div class="cert-info">
+          <h4>Essentials of Career Development</h4>
+          <p>Thinksamart — Professional communications, personal branding &amp; teamwork</p>
+        </div>
+        <div class="cert-date">Jun 2025</div>
+      </div>
+      <div class="cert-row reveal" style="transition-delay:.21s">
+        <div class="cert-dot teal"></div>
+        <div class="cert-info">
+          <h4>Microsoft Certified: Power BI Data Analyst Associate</h4>
+          <p>Thinksamart — Data modeling, relational database visualization &amp; enterprise reports</p>
+        </div>
+        <div class="cert-date">Feb 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner reveal">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Open to Opportunities</h2>
+      <p class="section-sub">Whether you have a project in mind or just want to chat about design and code, I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:manarmohsen194@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          manarmohsen194@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/manar-noori" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://meem19.github.io/portfolio" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Portfolio Site
+        </a>
+        <a href="tel:+97339400856" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.1 4.18 2 2 0 015.09 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +973 3940 0856
+        </a>
+      </div>
+      <a href="mailto:manarmohsen194@gmail.com" class="btn btn-primary" style="margin: 0 auto;">Say Hello ✉</a>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <p>Designed &amp; Built by <span>Manar Noori</span> · 2026</p>
+</footer>
+ 
+<script>
+  // Cursor glow
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+ 
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+ 
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
