@@ -1,4 +1,5 @@
 📖 Overview
+
 A modern, responsive single-page portfolio website built with HTML, CSS, and JavaScript. 
 It showcases my projects, skills, graphic design works, and experience in a clean, 
 accessible design with smooth animations and easy navigation.
@@ -9,6 +10,7 @@ accessible design with smooth animations and easy navigation.
 
 
 🚀 Features
+
 🖥️ Responsive Design – Works seamlessly on desktop, tablet, and mobile
 📂 Interactive Project Showcase – Direct GitHub links for each project
 🎨 Modern UI – Clean layout with smooth animations and a soft color palette
@@ -17,8 +19,11 @@ accessible design with smooth animations and easy navigation.
 📄 CV Download – Direct link to my CV
 
 🛠️ Technologies Used
+
 HTML5  CSS3 (Flexbox & Grid)  JavaScript (ES6+)  Google Fonts
+
 📁 Projects Showcased
+
 📚 Let's Read – Book recommendation system (Final University Project 🏆 Best Design Award)
 🎬 MovieFlix – Online movie ticket booking system
 📊 LucaStore Sales Dashboard – Interactive Power BI dashboard for sales analysis
