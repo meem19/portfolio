@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   :root {
     --cream:    #F2EAE0;
     --teal:     #B4D3D9;
     --lavender: #BDA6CE;
     --violet:   #9B8EC7;
- 
+
     --bg:       #F2EAE0;
     --bg2:      #ede4d8;
     --bg3:      #e8ddd0;
@@ -30,9 +30,9 @@
     --font-body:'Inter', sans-serif;
     --shadow:   0 4px 32px rgba(155,142,199,0.13);
   }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     background: var(--bg);
     color: var(--text);
@@ -41,7 +41,7 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
- 
+
   /* ── CURSOR GLOW ── */
   #glow {
     pointer-events: none;
@@ -53,7 +53,7 @@
     transition: opacity .4s;
     z-index: 0;
   }
- 
+
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -84,7 +84,7 @@
   .nav-cta:hover { background: #8879b8 !important; }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
- 
+
   /* ── SECTION BASE ── */
   section { position: relative; z-index: 1; padding: 7rem 5%; }
   .container { max-width: 1100px; margin: 0 auto; }
@@ -99,7 +99,7 @@
     color: var(--text);
   }
   .section-sub { color: var(--muted); max-width: 540px; font-size: 1rem; }
- 
+
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
@@ -123,7 +123,7 @@
     background: #B4D3D9; border-radius: 50%; animation: pulse 2s infinite;
   }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
- 
+
   .hero-title {
     font-family: var(--font-head); font-size: clamp(2.4rem,5vw,3.8rem);
     font-weight: 800; line-height: 1.08; margin-bottom: 1.25rem; color: var(--text);
@@ -134,7 +134,7 @@
     letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: .4rem;
   }
   .hero-desc { color: var(--text-mid); font-size: 1rem; margin-bottom: 2rem; max-width: 420px; }
- 
+
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: .5rem;
@@ -146,7 +146,7 @@
   .btn-primary:hover { background: #8879b8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(155,142,199,0.4); }
   .btn-secondary { background: rgba(180,211,217,0.2); color: var(--text); border: 1.5px solid rgba(180,211,217,0.6); }
   .btn-secondary:hover { background: rgba(180,211,217,0.35); border-color: var(--teal); }
- 
+
   .hero-socials { display: flex; gap: .75rem; margin-top: 2rem; }
   .hero-socials a {
     width: 40px; height: 40px; border-radius: 10px;
@@ -156,7 +156,7 @@
     transition: all .2s; backdrop-filter: blur(6px);
   }
   .hero-socials a:hover { border-color: var(--accent); color: var(--accent); background: rgba(155,142,199,0.1); }
- 
+
   /* Hero card */
   .hero-visual { display: flex; justify-content: center; align-items: center; }
   .hero-card {
@@ -191,7 +191,7 @@
     font-size: .68rem; font-weight: 600; color: #5a8a93;
   }
   .tag.lav { background: rgba(189,166,206,0.15); border-color: rgba(189,166,206,0.4); color: #7a5e8a; }
- 
+
   /* ── ABOUT ── */
   #about { background: #ede4d8; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
@@ -218,7 +218,7 @@
     border-radius: 100px; padding: .4rem 1rem;
     font-size: .78rem; font-weight: 600; color: #4d8a93; margin-top: 1rem;
   }
- 
+
   /* ── SKILLS ── */
   #skills { background: var(--bg); }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.1rem; margin-top: 2.5rem; }
@@ -240,7 +240,7 @@
     transition: all .18s;
   }
   .pill:hover { background: rgba(155,142,199,0.15); border-color: var(--lavender); color: var(--accent); }
- 
+
   /* ── PROJECTS ── */
   #projects { background: #ede4d8; }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px,1fr)); gap: 1.4rem; margin-top: 2.5rem; }
@@ -274,7 +274,7 @@
     display: flex; align-items: center; gap: .3rem; transition: color .2s;
   }
   .proj-link:hover { color: var(--accent); }
- 
+
   /* ── GRAPHIC DESIGN ── */
   #graphic { background: var(--bg); }
   .graphic-grid {
@@ -310,7 +310,7 @@
     border-radius: 5px; padding: .2rem .6rem;
     font-size: .68rem; font-weight: 600; color: #7a5e8a;
   }
- 
+
   /* ── CERTS ── */
   #certs { background: var(--bg); }
   .certs-list { display: flex; flex-direction: column; gap: .9rem; margin-top: 2.5rem; }
@@ -328,7 +328,7 @@
   .cert-info h4 { font-family: var(--font-head); font-size: .88rem; font-weight: 700; color: var(--text); }
   .cert-info p { color: var(--muted); font-size: .78rem; }
   .cert-date { font-size: .74rem; color: var(--accent); font-weight: 600; white-space: nowrap; }
- 
+
   /* ── CONTACT ── */
   #contact {
     background: linear-gradient(160deg, #e8ddd0 0%, #ddd4e8 100%);
@@ -346,7 +346,7 @@
   }
   .contact-link:hover { border-color: var(--lavender); color: var(--accent); background: rgba(255,255,255,0.8); box-shadow: 0 4px 16px rgba(189,166,206,0.2); }
   .contact-link svg { width: 17px; height: 17px; }
- 
+
   /* ── FOOTER ── */
   footer {
     text-align: center; padding: 2rem 5%;
@@ -355,11 +355,11 @@
     background: var(--bg2);
   }
   footer span { color: var(--accent); }
- 
+
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .55s ease, transform .55s ease; }
   .reveal.visible { opacity: 1; transform: none; }
- 
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .nav-links {
@@ -379,9 +379,9 @@
 </style>
 </head>
 <body>
- 
+
 <div id="glow"></div>
- 
+
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Manar<span>.</span></a>
@@ -397,7 +397,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
@@ -453,7 +453,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -502,12 +502,12 @@
             <p>Power BI Data Analyst Associate (Feb 2025)</p>
           </div>
         </div>
-        <a href="https://drive.google.com/file/d/1O84E0qDGfdZB695sk1T4ZL6NKJhcasmD/view?usp=drive_link" target="_blank" class="btn btn-secondary" style="margin-top:.5rem;justify-content:center;">📄 Download CV</a>
+        <a href="https://drive.google.com/file/d/14p6Y4TBRcriVzcdtp68q589zhdAyK1z9/view?usp=sharing" target="_blank" class="btn btn-secondary" style="margin-top:.5rem;justify-content:center;">📄 Download CV</a>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
@@ -554,7 +554,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
@@ -624,7 +624,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- GRAPHIC DESIGN -->
 <section id="graphic">
   <div class="container">
@@ -680,7 +680,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- CERTS -->
 <section id="certs">
   <div class="container">
@@ -724,7 +724,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -754,11 +754,11 @@
     </div>
   </div>
 </section>
- 
+
 <footer>
   <p>Designed &amp; Built by <span>Manar Noori</span> · 2026</p>
 </footer>
- 
+
 <script>
   // Cursor glow
   const glow = document.getElementById('glow');
@@ -766,13 +766,13 @@
     glow.style.left = e.clientX + 'px';
     glow.style.top  = e.clientY + 'px';
   });
- 
+
   // Hamburger
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('navLinks');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
- 
+
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
